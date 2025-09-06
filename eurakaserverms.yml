@@ -1,9 +1,13 @@
 server:
   port: 8761
+server:
+  port: 8070
+
 eureka:
   instance:
-    prefer-ip-address: false
-    hostname: localhost   # or the container name if you want intra-docker calls
-    instance-id: ${spring.application.name}:${random.value}
-
-            
+    hostname: localhost
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
